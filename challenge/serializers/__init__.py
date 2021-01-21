@@ -1,2 +1,2 @@
-from .athlete_serializer import AthleteSerializer, AthleteInfoSerializer
+from .athlete_serializer import AthleteSerializer
 from .event_serializer import EventSerializer
