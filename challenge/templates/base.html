@@ -1,0 +1,46 @@
+{% comment %} <html>
+    <head>
+        <title>Celero Challenge</title>
+
+        <!-- Libs -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="static/css/challenge.css">
+
+        <!-- App declaration -->
+        <script src="static/js/challenge.js"></script>
+
+        <!-- Factories -->
+        <script src="static/js/fctr/httpFctr.js"></script>
+
+        <!-- Controllers-->
+        <script src="static/js/ctrl/rootCtrl.js"></script>
+        <script src="static/js/ctrl/sitesCtrl.js"></script>
+        <script src="static/js/ctrl/channelsCtrl.js"></script>
+
+        <!-- Filters-->
+        <script src="static/js/fltr/splitFltr.js"></script>
+
+    </head>
+
+    <body id="challenge" ng-app="challenge" ng-controller="RootCtrl">
+        <section class="container">
+            <h3>Welcome to navegg challenge</h3>
+            <p>This platform put together both challenges, Back-End and Front-End. All CRUD proccess can be done in sites AND channels</p>
+            <p>To change between tabs, click and the buttons below</p>
+            <div class="buttons">
+                <button ng-class="{main: active_tab=='sites'}" ng-click="active_tab='sites'">Sites</button>
+                <button ng-class="{main: active_tab=='channels'}" ng-click="active_tab='channels'">Channels</button>
+            </div>
+        </section>
+
+        <section class="container" ng-if="active_tab=='sites'">
+            {% include 'sites.html' %}
+        </section>
+
+        <section class="container" ng-if="active_tab=='channels'">
+            {% include 'channels.html' %}
+        </section>
+    </body>
+</html> {%comment%}
