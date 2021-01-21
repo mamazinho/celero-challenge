@@ -10,7 +10,8 @@ class AthleteInfo(models.Model):
         'Athlete',
         db_column='atiAthId',
         default=0,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='athlete_infos'
     )
     sex = models.CharField(
         db_column='atiSex',

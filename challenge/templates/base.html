@@ -1,4 +1,4 @@
-{% comment %} <html>
+<html>
     <head>
         <title>Celero Challenge</title>
 
@@ -16,8 +16,8 @@
 
         <!-- Controllers-->
         <script src="static/js/ctrl/rootCtrl.js"></script>
-        <script src="static/js/ctrl/sitesCtrl.js"></script>
-        <script src="static/js/ctrl/channelsCtrl.js"></script>
+        <script src="static/js/ctrl/athletesCtrl.js"></script>
+        <script src="static/js/ctrl/eventsCtrl.js"></script>
 
         <!-- Filters-->
         <script src="static/js/fltr/splitFltr.js"></script>
@@ -26,21 +26,21 @@
 
     <body id="challenge" ng-app="challenge" ng-controller="RootCtrl">
         <section class="container">
-            <h3>Welcome to navegg challenge</h3>
+            <h3>Welcome to celero challenge</h3>
             <p>This platform put together both challenges, Back-End and Front-End. All CRUD proccess can be done in sites AND channels</p>
             <p>To change between tabs, click and the buttons below</p>
             <div class="buttons">
-                <button ng-class="{main: active_tab=='sites'}" ng-click="active_tab='sites'">Sites</button>
-                <button ng-class="{main: active_tab=='channels'}" ng-click="active_tab='channels'">Channels</button>
+                <button ng-class="{main: active_tab=='sites'}" ng-click="active_tab='sites'">Athletes</button>
+                <button ng-class="{main: active_tab=='channels'}" ng-click="active_tab='channels'">Events</button>
             </div>
         </section>
 
         <section class="container" ng-if="active_tab=='sites'">
-            {% include 'sites.html' %}
+            {% include 'athletes.html' %}
         </section>
 
         <section class="container" ng-if="active_tab=='channels'">
-            {% include 'channels.html' %}
+            {% include 'events.html' %}
         </section>
     </body>
-</html> {%comment%}
+</html>

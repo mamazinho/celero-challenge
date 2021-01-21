@@ -1,0 +1,42 @@
+<section class="content" ng-controller="AthletesCtrl">
+    <span>This tab shows the sites that was asked in Back-end challenge. Here you can crete, update and delete a site</span>
+
+    <div ng-show="openCreateModal==false" class="buttons">
+        <button class="main" ng-click="openCreateModal=true">Create new site</button>
+    </div>
+
+    <div class="modal" ng-show="openCreateModal">
+        <div class="overlay" ng-click="openCreateModal=false"></div>
+        <div class="content">
+            {% include 'modals/__createSite.html' %}
+        </div>
+    </div>
+
+    <div class="modal" ng-show="openEditModal">
+        <div class="overlay" ng-click="openEditModal=false"></div>
+        <div class="content">
+            {% include 'modals/__editSite.html' %}
+        </div>
+    </div>
+
+    <div class="box">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="athlete in athletes track by $index">
+                    <td>{[ athlete.id ]}</td>
+                    <td>{[ athlete.athlete_name ]}</td>
+                    <td class="btn" ng-click="editModal(athlete)"><img src="static/img/edit.png" width="22"/></td>
+                    <td class="btn" ng-click="deleteSite(athlete.id)"><img src="static/img/delete.png" width="22"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

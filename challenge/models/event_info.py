@@ -10,7 +10,8 @@ class EventInfo(models.Model):
         'Event',
         db_column='eviEveId',
         default=0,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='event_infos'
     )
     city = models.CharField(
         db_column='eviCity',

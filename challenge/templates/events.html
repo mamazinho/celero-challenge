@@ -1,0 +1,48 @@
+<section class="content" ng-controller="SitesCtrl">
+    <span>This tab shows the sites that was asked in Back-end challenge. Here you can crete, update and delete a site</span>
+
+    <div ng-show="openCreateModal==false" class="buttons">
+        <button class="main" ng-click="openCreateModal=true">Create new site</button>
+    </div>
+
+    <div class="modal" ng-show="openCreateModal">
+        <div class="overlay" ng-click="openCreateModal=false"></div>
+        <div class="content">
+            {% include 'modals/__createSite.html' %}
+        </div>
+    </div>
+
+    <div class="modal" ng-show="openEditModal">
+        <div class="overlay" ng-click="openEditModal=false"></div>
+        <div class="content">
+            {% include 'modals/__editSite.html' %}
+        </div>
+    </div>
+
+    <div class="box">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Urls</th>
+                    <th>Categories</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="site in sites track by $index">
+                    <td>{[ site.id ]}</td>
+                    <td>{[ site.name ]}</td>
+                    <td><span ng-repeat="url in site.urls | split:';'"> {[ url ]}</span></td>
+                    <td><span ng-repeat="category in site.categories | split:';'"> {[ category ]}</span></td>
+                    <td>{[ site.status ]}</td>
+                    <td class="btn" ng-click="editModal(site)"><img src="static/img/edit.png" width="22"/></td>
+                    <td class="btn" ng-click="deleteSite(site.id)"><img src="static/img/delete.png" width="22"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

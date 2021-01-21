@@ -14,6 +14,7 @@ class Athlete(models.Model):
     events = models.ManyToManyField(
         'Event',
         db_column='athEvents', 
+        related_name='atheletes'
     )
 
     def __str__(self):
