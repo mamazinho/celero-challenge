@@ -47,6 +47,9 @@ class Command(BaseCommand):
                 team=line['Team'],
                 medal=line['Medal'],
             )
+            event.athlete_infos.add(athlete_info)
+            athlete.save()
+            
             print(f'{event}\n{event_info}\n{athlete}\n{athlete_info}')
             break
 

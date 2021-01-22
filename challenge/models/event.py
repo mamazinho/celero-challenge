@@ -11,9 +11,14 @@ class Event(models.Model):
         max_length=132,
         unique = True
     )
+    athlete_infos = models.ManyToManyField(
+        'AthleteInfo',
+        db_column='eveAtiId', 
+        related_name='events'
+    )
 
     def __str__(self):
-        return f"{self.id} - {self.event_name}"
+        return f"{self.id} - {self.event_name} - {self.athlete_infos}"
 
     class Meta:
         managed = True
