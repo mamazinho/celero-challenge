@@ -13,6 +13,11 @@ class AthleteInfo(models.Model):
         on_delete=models.CASCADE,
         related_name='athlete_infos'
     )
+    events = models.ManyToManyField(
+        'Event',
+        db_column='atiEvents', 
+        related_name='ath_infos'
+    )
     sex = models.CharField(
         db_column='atiSex',
         max_length=1,

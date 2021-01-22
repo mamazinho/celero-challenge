@@ -17,7 +17,13 @@ class Command(BaseCommand):
 
         # Reading each csv line
         print("Reading CSV file...\n")
+        i = 0
         for line in reader:
+            i += 1
+
+            line['Height'] = 0 if line['Height'] == 'NA' else line['Height']
+            line['Weight'] = 0 if line['Weight'] == 'NA' else line['Weight']
+            line['Medal'] = 0 if line['Medal'] == 'NA' else line['Medal']
 
             event, created = Event.objects.get_or_create(
                 event_name=line['Event']
@@ -35,8 +41,6 @@ class Command(BaseCommand):
             athlete, created = Athlete.objects.get_or_create(
                 athlete_name=line['Name'],
             )
-            athlete.events.add(event)
-            athlete.save()
 
             athlete_info, created = AthleteInfo.objects.get_or_create(
                 athlete=athlete,
@@ -47,8 +51,12 @@ class Command(BaseCommand):
                 team=line['Team'],
                 medal=line['Medal'],
             )
+            athlete_info.events.add(event)
+            athlete.save()
+
             print(f'{event}\n{event_info}\n{athlete}\n{athlete_info}')
-            break
+            if i >= 7:
+                break
 
         # Save in database
         # Site.objects.bulk_create(to_create, ignore_conflicts=True)

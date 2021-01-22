@@ -11,11 +11,6 @@ class Athlete(models.Model):
         max_length=45,
         unique = True
     )
-    events = models.ManyToManyField(
-        'Event',
-        db_column='athEvents', 
-        related_name='atheletes'
-    )
 
     def __str__(self):
         return f"{self.id} - {self.athlete_name}"
