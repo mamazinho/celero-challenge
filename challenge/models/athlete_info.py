@@ -16,7 +16,8 @@ class AthleteInfo(models.Model):
     events = models.ManyToManyField(
         'Event',
         db_column='atiEvents', 
-        related_name='ath_infos'
+        related_name='ath_infos',
+        blank=True,
     )
     sex = models.CharField(
         db_column='atiSex',

@@ -23,7 +23,7 @@ class Command(BaseCommand):
 
             line['Height'] = 0 if line['Height'] == 'NA' else line['Height']
             line['Weight'] = 0 if line['Weight'] == 'NA' else line['Weight']
-            line['Medal'] = 0 if line['Medal'] == 'NA' else line['Medal']
+            line['Medal'] = '' if line['Medal'] == 'NA' else line['Medal']
 
             event, created = Event.objects.get_or_create(
                 event_name=line['Event']

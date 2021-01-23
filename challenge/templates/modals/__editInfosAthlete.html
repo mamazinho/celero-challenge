@@ -1,0 +1,32 @@
+<h4>Create Site Modal</h4>
+<form id="createChannel">
+    <label>
+        <span>ID of the athlete: </span>
+        <input name="athlete" ng-model="createInfosAthlete.athlete" type="number" placeholder="ID (You can find this in first column)">
+    </label>
+    <label>
+        <span>Age: </span>
+        <input name="age" ng-model="createInfosAthlete.age" type="number" placeholder="Age">
+    </label>
+    <label>
+        <span>Height: </span>
+        <input name="height" ng-model="createInfosAthlete.height" type="number" placeholder="Height">
+    </label>
+    <label>
+        <span>Weight: </span>
+        <input name="weight" ng-model="createInfosAthlete.weight" type="number" placeholder="Weight">
+    </label>
+    <label>
+        <span>Team: </span>
+        <input name="team" ng-model="createInfosAthlete.team" type="text" placeholder="Team">
+    </label>
+    <label>
+        <span>Medal: </span>
+        <input name="medal" ng-model="createInfosAthlete.medal" type="text" placeholder="Medal (Gold, Silver or Bronze)" pattern="Metal|Gold|Silver">
+    </label>
+
+    <div class="buttons">
+        <button class="main" ng-click="editInfosAthlete()">Create</button>
+        <button class="cancel" ng-click="openEditInfosModal=false">Cancel</button>
+    </div>
+</form>

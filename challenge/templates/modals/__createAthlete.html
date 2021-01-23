@@ -1,0 +1,12 @@
+<h4>Create Athlete Modal</h4>
+<form id="createAthlete">
+    <label>
+        <span>Athlete Name: </span>
+        <input name="name" ng-model="createAthlete.athlete_name" type="text" placeholder="Athlete name" required>
+    </label>
+
+    <div class="buttons">
+        <button class="main" ng-click="createNewAthlete()">Create</button>
+        <button class="cancel" ng-click="openCreateModal=false">Cancel</button>
+    </div>
+</form>

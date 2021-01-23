@@ -1,0 +1,12 @@
+<h4>Edit Site Modal</h4>
+<form id="editSite">
+    <label>
+        <span>Athlete Name: </span>
+        <input name="name" ng-model="editAthlete.athlete_name" type="text" placeholder="Athlete name" required>
+    </label>
+
+    <div class="buttons">
+        <button class="main" type="button" ng-click="updateAthlete()">Update</button>
+        <button class="cancel" type="button" ng-click="openEditModal=false">Cancel</button>
+    </div>
+</form>

@@ -19,9 +19,6 @@
         <script src="static/js/ctrl/athletesCtrl.js"></script>
         <script src="static/js/ctrl/eventsCtrl.js"></script>
 
-        <!-- Filters-->
-        <script src="static/js/fltr/splitFltr.js"></script>
-
     </head>
 
     <body id="challenge" ng-app="challenge" ng-controller="RootCtrl">
@@ -30,16 +27,16 @@
             <p>This platform put together both challenges, Back-End and Front-End. All CRUD proccess can be done in sites AND channels</p>
             <p>To change between tabs, click and the buttons below</p>
             <div class="buttons">
-                <button ng-class="{main: active_tab=='sites'}" ng-click="active_tab='sites'">Athletes</button>
-                <button ng-class="{main: active_tab=='channels'}" ng-click="active_tab='channels'">Events</button>
+                <button ng-class="{main: active_tab=='athletes'}" ng-click="active_tab='athletes'">Athletes</button>
+                <button ng-class="{main: active_tab=='events'}" ng-click="active_tab='events'">Events</button>
             </div>
         </section>
 
-        <section class="container" ng-if="active_tab=='sites'">
+        <section class="container" ng-if="active_tab=='athletes'">
             {% include 'athletes.html' %}
         </section>
 
-        <section class="container" ng-if="active_tab=='channels'">
+        <section class="container" ng-if="active_tab=='events'">
             {% include 'events.html' %}
         </section>
     </body>

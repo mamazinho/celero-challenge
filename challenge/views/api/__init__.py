@@ -1,2 +1,4 @@
 from .events import EventViewSet
-from .athelets import AthleteViewSet
+from .events import EventInfoViewSet
+from .atheletes import AthleteViewSet
+from .atheletes import AthleteInfoViewSet
