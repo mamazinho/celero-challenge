@@ -11,7 +11,7 @@ class AthleteInfoViewSet(viewsets.ModelViewSet):
     queryset = AthleteInfo.objects.all()
 
     def get_serializer_class(self):
-        if self.action == 'create':
+        if self.action in ['create', 'update']:
             return AthleteNewInfoSerializer
 
         return AthleteInfoSerializer

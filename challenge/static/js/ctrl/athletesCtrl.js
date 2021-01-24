@@ -94,6 +94,7 @@ challenge.controller('AthletesCtrl', function($scope, HttpFctr, $rootScope){
 
   // Create new atlhete infos
   $scope.createInfos = function() {
+    $scope.createInfosAthlete.medal == '' ? $scope.createInfosAthlete.medal = null : $scope.createInfosAthlete.medal
     $scope.createInfosAthlete.event = [$scope.createInfosAthlete.event]
     var data = JSON.stringify($scope.createInfosAthlete)
     HttpFctr('athletes-infos', 'POST', {data}).then(function(){
@@ -108,6 +109,8 @@ challenge.controller('AthletesCtrl', function($scope, HttpFctr, $rootScope){
 
   // Update Infos Athlete
   $scope.updateInfos = function() {
+    $scope.editInfosAthlete.medal == '' ? $scope.editInfosAthlete.medal = null : $scope.editInfosAthlete.medal
+    $scope.editInfosAthlete.event = [$scope.editInfosAthlete.event]
     var data = JSON.stringify($scope.editInfosAthlete)
     HttpFctr(`athletes-infos/${$scope.editInfosAthlete.id}`, 'PUT', {data}).then(function(){
       $scope.getAthletes()
