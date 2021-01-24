@@ -24,7 +24,11 @@
     <body id="challenge" ng-app="challenge" ng-controller="BaseCtrl">
         <section class="container">
             <h3>Welcome to celero challenge</h3>
-            <p>This platform put together both challenges, Back-End and Front-End. All CRUD proccess can be done in sites AND channels</p>
+            <p>This platform it's a complete CRUD of a complex data structure, with Back-end in Django rest framework and Front-end in AngularJs.</p>
+            <p>
+                <span>It's feeded by a unique CSV that is readed by a command in django. The project use the Serializers, ViewSets and routers of Django Rest Framework.<span>
+                <span>More details you can find on README documentation.</span>
+            </p>
             <p>To change between tabs, click and the buttons below</p>
             <div class="buttons">
                 <button ng-class="{main: active_tab=='athletes'}" ng-click="active_tab='athletes'">Athletes</button>

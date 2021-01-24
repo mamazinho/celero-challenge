@@ -1,34 +1,37 @@
-<h4>Edit Event Modal</h4>
+<h4>Create Event Modal</h4>
 <form id="editEvent">
     <label>
         <span>Name: </span>
-        <input name="name" ng-model="editChannel.name" type="text" placeholder="Channel name" required>
+        <input name="event_name" ng-model="editEvent.event_name" type="text" placeholder="Event name">
     </label>
     <label>
-        <span>Parend ID: </span>
-        <input name="parent" ng-model="editChannel.parent" type="number" placeholder="Parent ID (if no parent put 0)" required>
+        <span>City: </span>
+        <input name="city" ng-model="editEvent.city" type="text" placeholder="City of this event">
     </label>
     <label>
-        <span>Users: </span>
-        <input name="users" ng-model="editChannel.users" type="number" placeholder="Users (visitors)" required>
+        <span>Sport: </span>
+        <input name="sport" ng-model="editEvent.sport" type="text" placeholder="Sport of this event">
     </label>
     <label>
-        <span>Percent: </span>
-        <input name="percent" ng-model="editChannel.percent" type="number" placeholder="Percent (Just the number, without '%')" required>
+        <span>Year: </span>
+        <input name="year" ng-model="editEvent.year" type="number" placeholder="Year of this event">
     </label>
     <label>
-        <span>Status: </span>
-        <label>
-            <input name="status" ng-model="editChannel.status" type="radio" value="Active" required>Active
-        </label>
-        <label>
-            <input name="status" ng-model="editChannel.status" type="radio" value="Inactive" required>Inactive
-            
-        </label>
+        <span>Games: </span>
+        <input name="year" ng-model="editEvent.games" type="text" placeholder="The games, year and season">
+    </label>
+    <label>
+        <span>Season: </span>
+        <select name="cars" id="cars" ng-model="editEvent.season">
+            <option value="Summer">Summer</option>
+            <option value="Autumn">Autumn</option>
+            <option value="Winter">Winter</option>
+            <option value="Spring">Spring</option>
+        </select>
     </label>
 
     <div class="buttons">
-        <button class="main" ng-click="updateChannel()">Update</button>
-        <button class="cancel" ng-click="openEditModal=false">Cancel</button>
+        <button class="main" ng-click="updateEvent()">Create</button>
+        <button class="cancel" ng-click="openEditEventModal=false">Cancel</button>
     </div>
 </form>

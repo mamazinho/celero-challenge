@@ -1,5 +1,9 @@
 <section class="content" ng-controller="AthletesCtrl">
-    <span>This tab shows the sites that was asked in Back-end challenge. Here you can crete, update and delete a site</span>
+    <h4>This tab shows the athletes, group by the them and explicit all informations about him and give you each event that the athlete participated for period of his life.</h4>
+    <p>Here you can manipulate all informations about an athlete, including his informations. You can create, edit and delete an athlete and his informations.</p>
+    <p>The athletes are ordered by name, in alphabetic order, the IDs serve to give informations for determined athlete.</p>
+    <p>You can't manipulate the events, for this operations, go to Events tab, clicking in the button above.</p>
+    <p>The headers change automatically according the level in tree structure.</p>
 
     <div class="buttons">
         <button class="main" ng-click="openCreateAthleteModal=true">Create new athlete</button>
@@ -43,7 +47,7 @@
 
         {% include 'modals/__headers.html' %}
 
-        <div ng-repeat="athlete in athletes | filter: filter_name track by $index">
+        <div ng-repeat="athlete in athletes | filter: {athlete_name:filter_name}">
             <ul>
                 <li class="arrow" ng-click="viewMore('treeIds', athlete.id)" ng-show="athlete.athlete_infos.length > 0"><span>&#10148;</span></li>
                 <li class="id">{[ athlete.id ]}</li>
@@ -61,7 +65,7 @@
                     <li class="team">{[ infos.team ]}</li>
                     <li class="medal">{[ infos.medal == null ? 'No medals' : infos.medal ]}</li>
                     <li><button ng-click="editInfosModal(infos)" class="edit">Edit Athlete Informations</button></li>
-                    <li><button ng-click="deleteInfos(infos.id)">Delete Athlete Informations</button></li>
+                    <li><button ng-click="deleteInfos(infos.id)">Del Athlete Informations</button></li>
                 </ul>
                 <div ng-show="secondTreeIds.includes(infos.id)" ng-repeat="event in infos.event">
                     <ul class="sub-child">
@@ -72,8 +76,6 @@
                         <li class="season">{[ event.season ]}</li>
                         <li class="year">{[ event.year ]}</li>
                         <li class="games">{[ event.games ]}</li>
-                        <li><button ng-click="editEvent(event)" class="edit">Edit Event</button></li>
-                        <li><button ng-click="deleteModal(event.id)">Delete Event</button></li>
                     </ul>
                 <div>
             <div>

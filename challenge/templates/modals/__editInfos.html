@@ -22,7 +22,12 @@
     </label>
     <label>
         <span>Medal: </span>
-        <input name="medal" ng-model="editInfosAthlete.medal" type="text" placeholder="Medal (Gold, Silver or Bronze)" pattern="Metal|Gold|Silver">
+        <select name="medal" ng-model="editInfosAthlete.medal">
+            <option value="">No medals</option>
+            <option value="Gold">Gold</option>
+            <option value="Silver">Silver</option>
+            <option value="Bronze">Bronze</option>
+        </select>
     </label>
     <label>
         <span>Sex: </span>

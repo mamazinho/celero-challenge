@@ -4,7 +4,7 @@ from rest_framework import serializers
 class EventAthleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Athlete
-        fields = ['athlete_name']
+        fields = '__all__'
 
 class EventInfoAthleteSerializer(serializers.ModelSerializer):
     athlete = EventAthleteSerializer(read_only=True)

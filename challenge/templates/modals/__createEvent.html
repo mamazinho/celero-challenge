@@ -2,32 +2,32 @@
 <form id="createEvent">
     <label>
         <span>Name: </span>
-        <input name="name" ng-model="createChannel.name" type="text" placeholder="Channel name">
+        <input name="event_name" ng-model="createEvent.event_name" type="text" placeholder="Event name">
     </label>
     <label>
-        <span>Parent ID: </span>
-        <input name="parent" ng-model="createChannel.parent" type="number" placeholder="Parent ID (if no parent put 0)">
+        <span>City: </span>
+        <input name="city" ng-model="createEvent.city" type="text" placeholder="City of this event">
     </label>
     <label>
-        <span>Users: </span>
-        <input name="users" ng-model="createChannel.users" type="number" placeholder="Users (visitors)">
+        <span>Sport: </span>
+        <input name="sport" ng-model="createEvent.sport" type="text" placeholder="Sport of this event">
     </label>
     <label>
-        <span>Percent: </span>
-        <input name="percent" ng-model="createChannel.percent" type="number" placeholder="Percent">
+        <span>Year: </span>
+        <input name="year" ng-model="createEvent.year" type="number" placeholder="Year of this event">
     </label>
     <label>
-        <span>Status: </span>
-        <label>
-            <input name="status" ng-model="createChannel.status" type="radio" value="Active">Active
-        </label>
-        <label>
-            <input name="status" ng-model="createChannel.status" type="radio" value="Inactive">Inactive
-        </label>
+        <span>Season: </span>
+        <select name="cars" id="cars" ng-model="createEvent.season">
+            <option value="Summer">Summer</option>
+            <option value="Autumn">Autumn</option>
+            <option value="Winter">Winter</option>
+            <option value="Spring">Spring</option>
+        </select>
     </label>
 
     <div class="buttons">
-        <button class="main" ng-click="createNewChannel()">Create</button>
-        <button class="cancel" ng-click="openCreateModal=false">Cancel</button>
+        <button class="main" ng-click="createNewEvent()">Create</button>
+        <button class="cancel" ng-click="openCreateEventModal=false">Cancel</button>
     </div>
 </form>
