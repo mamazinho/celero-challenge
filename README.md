@@ -1,9 +1,25 @@
-This application makes part of Celero's challenge, it solves both challenges, back-end and front-end
+This application makes part of Celero's challenge
+
 
 ## Technologies
 * Django
 * Django Rest framework
 * AngularJs
+
+## How the project was been build:
+* We have a mainly template that will be rendered by django, after load this template, the rest of front-end is render by AngularJS,
+where it will start to make requests to the API, which is running with django rest.
+
+## Questions:
+***Why use a front-end framework?***
+* I opt for use a front-end framework (AngularJs) because it will help so much in interactivity and how the data will be
+displayed to user, how the main objective of Django Rest Framework is to be an API (webServices), I treat it like this, leaving the renders
+with the front-end and delivering a complete flow.
+***Why the manyToMany relation stay in Athlete_infos and not in Athlete***
+* If the relation was been made using the athlete I will open the user and have all events that he goes more easily,
+but I would not have the same easily to take his infos for each event. So, it's better that info has many events and
+many events with that infos instead athlete. But I open for suggestions about data modeling or another issue.
+
 
 You can find how make your setup and run the project in your Linux machine in the text below:
 

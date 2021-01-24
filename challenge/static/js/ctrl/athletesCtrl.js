@@ -5,6 +5,7 @@ challenge.controller('AthletesCtrl', function($scope, HttpFctr, $rootScope){
     $scope.treeIds = []
     $scope.secondTreeIds = []
     $scope.thirdTreeIds = []
+    $scope.filter_name = ''
     $scope.renderHeader = 'generic'
     $scope.openCreateAthleteModal = false
     $scope.openEditAthleteModal = false
@@ -44,10 +45,11 @@ challenge.controller('AthletesCtrl', function($scope, HttpFctr, $rootScope){
   // Get the Athletes from API
   $scope.getAthletes = function() {
     HttpFctr('athletes', 'GET').then(function(response){
-      $scope.athletes = response
+    $scope.athletes = response
     })
   }
-  // Get the Events from API
+
+  // Get the Events from API to select in modal of infos
   $scope.getEvents = function() {
     HttpFctr('events', 'GET').then(function(response){
       $scope.events = response
@@ -55,7 +57,7 @@ challenge.controller('AthletesCtrl', function($scope, HttpFctr, $rootScope){
   }
 
   // Create new Athletes on API
-  $scope.createAthlete = function() {
+  $scope.createNewAthlete = function() {
     var data = JSON.stringify($scope.createAthlete)
     HttpFctr('athletes', 'POST', {data}).then(function(){
       $scope.getAthletes()
@@ -94,7 +96,6 @@ challenge.controller('AthletesCtrl', function($scope, HttpFctr, $rootScope){
   $scope.createInfos = function() {
     $scope.createInfosAthlete.event = [$scope.createInfosAthlete.event]
     var data = JSON.stringify($scope.createInfosAthlete)
-    console.log(data)
     HttpFctr('athletes-infos', 'POST', {data}).then(function(){
       $scope.getAthletes()
       $scope.openCreateInfosModal = false
@@ -110,7 +111,7 @@ challenge.controller('AthletesCtrl', function($scope, HttpFctr, $rootScope){
     var data = JSON.stringify($scope.editInfosAthlete)
     HttpFctr(`athletes-infos/${$scope.editInfosAthlete.id}`, 'PUT', {data}).then(function(){
       $scope.getAthletes()
-      $scope.openEditModal = false
+      $scope.openEditInfosModal = false
       $scope.editInfosAthlete = {}
     }).catch((error) => {
       console.log('ERROR >>', error)
@@ -135,7 +136,9 @@ challenge.controller('AthletesCtrl', function($scope, HttpFctr, $rootScope){
   }
   $scope.editInfosModal = function(infos) {
     $scope.openEditInfosModal = true
+    $scope.editInfosAthlete.id = infos.id
     $scope.editInfosAthlete.athlete = infos.athlete
+    $scope.editInfosAthlete.sex = infos.sex
     $scope.editInfosAthlete.age = infos.age
     $scope.editInfosAthlete.height = infos.height
     $scope.editInfosAthlete.weight = infos.weight
@@ -157,9 +160,9 @@ challenge.controller('AthletesCtrl', function($scope, HttpFctr, $rootScope){
       if (treeStr == 'treeIds')
         $scope.renderHeader = 'generic'
       else if (treeStr == 'secondTreeIds')
-        $scope.renderHeader = 'generic'
+        $scope.renderHeader = 'athlete_infos'
     }
-  }   
+  }
 
   $scope.__init__()
 

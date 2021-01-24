@@ -35,7 +35,7 @@
     </label>
     <label>
         <span>Event: </span>
-        <select ng-model="createInfosAthlete.event" ng-options="event.id as event.event_name for event in events">
+        <select ng-model="createInfosAthlete.event" ng-options="event.id as event.event_name for event in events track by event.id">
             <option value="Dê um evento para esse atleta">Dê um evento para esse atleta</option>
         </select>
     </label>

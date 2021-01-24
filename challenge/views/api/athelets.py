@@ -1,5 +1,5 @@
 from challenge.models import Athlete, AthleteInfo
-from challenge.serializers import AthleteSerializer, AthleteInfoSerializer
+from challenge.serializers import AthleteSerializer, AthleteInfoSerializer, AthleteNewInfoSerializer
 from rest_framework import viewsets
 from rest_framework.decorators import action
 
@@ -7,7 +7,11 @@ class AthleteViewSet(viewsets.ModelViewSet):
     serializer_class = AthleteSerializer
     queryset = Athlete.objects.all()
 
-@action(methods=['post'], detail=True)
 class AthleteInfoViewSet(viewsets.ModelViewSet):
-    serializer_class = AthleteInfoSerializer
     queryset = AthleteInfo.objects.all()
+
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return AthleteNewInfoSerializer
+
+        return AthleteInfoSerializer

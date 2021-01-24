@@ -5,6 +5,11 @@
         <button class="main" ng-click="openCreateAthleteModal=true">Create new athlete</button>
         <button class="main" ng-click="openCreateInfosModal=true">Give informations for an athlete</button>
     </div>
+    <div class="filter">
+        <label>
+            <input type="text" placeholder="Filter by athlete name" ng-model="filter_name">
+        </label>
+    </div>
 
     <div class="modal" ng-show="openCreateAthleteModal">
         <div class="overlay" ng-click="openCreateAthleteModal=false"></div>
@@ -38,7 +43,7 @@
 
         {% include 'modals/__headers.html' %}
 
-        <div ng-repeat="athlete in athletes track by $index">
+        <div ng-repeat="athlete in athletes | filter: filter_name track by $index">
             <ul>
                 <li class="arrow" ng-click="viewMore('treeIds', athlete.id)" ng-show="athlete.athlete_infos.length > 0"><span>&#10148;</span></li>
                 <li class="id">{[ athlete.id ]}</li>
@@ -56,12 +61,11 @@
                     <li class="team">{[ infos.team ]}</li>
                     <li class="medal">{[ infos.medal == null ? 'No medals' : infos.medal ]}</li>
                     <li><button ng-click="editInfosModal(infos)" class="edit">Edit Athlete Informations</button></li>
-                    <li><button ng-click="deleteModal(infos.id)">Delete Athlete Informations</button></li>
+                    <li><button ng-click="deleteInfos(infos.id)">Delete Athlete Informations</button></li>
                 </ul>
                 <div ng-show="secondTreeIds.includes(infos.id)" ng-repeat="event in infos.event">
                     <ul class="sub-child">
                         <li class="arrow" ng-click="viewMore('thirdTreeIds', event.id)" ng-show="infos.events.length > 0"><span>&#10148;</span></li>
-                        <li class="id">{[ event.id ]}</li>
                         <li class="event_name">{[ event.event_name ]}</li>
                         <li class="city">{[ event.city ]}</li>
                         <li class="sport">{[ event.sport ]}</li>
