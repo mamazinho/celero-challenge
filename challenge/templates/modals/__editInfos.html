@@ -1,0 +1,47 @@
+<h4>Edit Athlete Infos Modal</h4>
+<form id="createInfos">
+    <label>
+        <span>ID of the athlete: </span>
+        <input name="athlete" ng-model="editInfosAthlete.athlete" type="number" placeholder="ID (You can find this in first column)">
+    </label>
+    <label>
+        <span>Age: </span>
+        <input name="age" ng-model="editInfosAthlete.age" type="number" placeholder="Age">
+    </label>
+    <label>
+        <span>Height: </span>
+        <input name="height" ng-model="editInfosAthlete.height" type="number" placeholder="Height">
+    </label>
+    <label>
+        <span>Weight: </span>
+        <input name="weight" ng-model="editInfosAthlete.weight" type="number" placeholder="Weight">
+    </label>
+    <label>
+        <span>Team: </span>
+        <input name="team" ng-model="editInfosAthlete.team" type="text" placeholder="Team">
+    </label>
+    <label>
+        <span>Medal: </span>
+        <input name="medal" ng-model="editInfosAthlete.medal" type="text" placeholder="Medal (Gold, Silver or Bronze)" pattern="Metal|Gold|Silver">
+    </label>
+    <label>
+        <span>Sex: </span>
+        <label>
+            <input name="sex" ng-model="editInfosAthlete.sex" type="radio" value="M" required>Male
+        </label>
+        <label>
+            <input name="sex" ng-model="editInfosAthlete.sex" type="radio" value="F" required>Female
+        </label>
+    </label>
+    <label>
+        <span>Event: </span>
+        <select ng-model="editInfosAthlete.event" ng-options="event.id as event.event_name for event in events">
+            <option value="Dê um evento para esse atleta">Dê um evento para esse atleta</option>
+        </select>
+    </label>
+
+    <div class="buttons">
+        <button class="main" ng-click="updateInfos()">Update</button>
+        <button class="cancel" ng-click="openEditInfosModal=false">Cancel</button>
+    </div>
+</form>

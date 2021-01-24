@@ -5,6 +5,7 @@ from challenge.views.api import *
 router = DefaultRouter()
 
 router.register(r'athletes', AthleteViewSet, basename='athletes')
+router.register(r'athletes-infos', AthleteInfoViewSet, basename='athletes-infos')
 router.register(r'events', EventViewSet, basename='events')
 
 

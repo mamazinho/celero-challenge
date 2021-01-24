@@ -21,7 +21,13 @@
             function(error){
                 if(error.xhrStatus != 'abort' && (error.data && !error.data.messages))
                     console.error('HttpFctr HTTP ERROR >> ',JSON.stringify(error))
-                window.errorMessage = `${Object.keys(error.data)[0]}: ${error.data[Object.keys(error.data)[0].toString()]}`
+
+                var field = Object.keys(error.data)[0]
+                if (!(error.data[field] == '[object Object]')) 
+                    window.errorMessage = `${field}: ${error.data[field]}`
+                else
+                    window.errorMessage = 'This field already exists in this instance'
+
                 q.reject(error)
             }
         )

@@ -1,4 +1,4 @@
-from challenge.models import Athlete, AthleteInfo, Event, EventInfo
+from challenge.models import Athlete, AthleteInfo, Event
 from django.core.management.base import BaseCommand
 import datetime, json, requests, csv
 
@@ -12,31 +12,27 @@ class Command(BaseCommand):
 
         # Get local csv
         csv_file = open('challenge/utils/athlete_events.csv')
-        to_create = []
         reader = csv.DictReader(csv_file, delimiter=',')
 
         # Reading each csv line
         print("Reading CSV file...\n")
         for line in reader:
 
-            event, created = Event.objects.get_or_create(
-                event_name=line['Event']
+            for features in ['Age', 'Height', 'Weight', 'Medal']:
+                line[features] = None if line[features] == 'NA' else line[features]
+
+            athlete, created = Athlete.objects.get_or_create(
+                athlete_name=line['Name'],
             )
 
-            event_info, created = EventInfo.objects.get_or_create(
-                event=event,
+            event, created = Event.objects.get_or_create(
+                event_name=line['Event'],
                 city=line['City'],
                 sport=line['Sport'],
                 season=line['Season'],
                 year=line['Year'],
                 games=line['Games'],
             )
-
-            athlete, created = Athlete.objects.get_or_create(
-                athlete_name=line['Name'],
-            )
-            athlete.events.add(event)
-            athlete.save()
 
             athlete_info, created = AthleteInfo.objects.get_or_create(
                 athlete=athlete,
@@ -47,10 +43,9 @@ class Command(BaseCommand):
                 team=line['Team'],
                 medal=line['Medal'],
             )
-            print(f'{event}\n{event_info}\n{athlete}\n{athlete_info}')
-            break
+            athlete_info.event.add(event)
 
-        # Save in database
-        # Site.objects.bulk_create(to_create, ignore_conflicts=True)
+            print(f'EVENT: {event}\nATHLETE: {athlete}\nINFOS: {athlete_info}')
+            break
 
         print("Process completed successfully")

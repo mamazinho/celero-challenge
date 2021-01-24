@@ -26,7 +26,7 @@ class AthleteInfo(models.Model):
         choices=[(x, x) for x in ('F', 'M')],
         default='F',
     )
-    age = models.IntegerField(
+    age = models.PositiveSmallIntegerField(
         db_column='atiAge',
         null=True,
         blank=True,
@@ -61,6 +61,7 @@ class AthleteInfo(models.Model):
     class Meta:
         managed = True
         db_table = 'AthleteInfo'
+        unique_together = (('athlete', 'team'),)
 
         
 admin.site.register(AthleteInfo)

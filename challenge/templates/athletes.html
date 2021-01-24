@@ -1,42 +1,79 @@
 <section class="content" ng-controller="AthletesCtrl">
     <span>This tab shows the sites that was asked in Back-end challenge. Here you can crete, update and delete a site</span>
 
-    <div ng-show="openCreateModal==false" class="buttons">
-        <button class="main" ng-click="openCreateModal=true">Create new site</button>
+    <div class="buttons">
+        <button class="main" ng-click="openCreateAthleteModal=true">Create new athlete</button>
+        <button class="main" ng-click="openCreateInfosModal=true">Give informations for an athlete</button>
     </div>
 
-    <div class="modal" ng-show="openCreateModal">
-        <div class="overlay" ng-click="openCreateModal=false"></div>
+    <div class="modal" ng-show="openCreateAthleteModal">
+        <div class="overlay" ng-click="openCreateAthleteModal=false"></div>
         <div class="content">
-            {% include 'modals/__createSite.html' %}
+            {% include 'modals/__createAthlete.html' %}
         </div>
     </div>
 
-    <div class="modal" ng-show="openEditModal">
-        <div class="overlay" ng-click="openEditModal=false"></div>
+    <div class="modal" ng-show="openEditAthleteModal">
+        <div class="overlay" ng-click="openEditAthleteModal=false"></div>
         <div class="content">
-            {% include 'modals/__editSite.html' %}
+            {% include 'modals/__editAthlete.html' %}
+        </div>
+    </div>
+
+    <div class="modal" ng-show="openCreateInfosModal">
+        <div class="overlay" ng-click="openCreateInfosModal=false"></div>
+        <div class="content">
+            {% include 'modals/__createInfos.html' %}
+        </div>
+    </div>
+
+    <div class="modal" ng-show="openEditInfosModal">
+        <div class="overlay" ng-click="openEditInfosModal=false"></div>
+        <div class="content">
+            {% include 'modals/__editInfos.html' %}
         </div>
     </div>
 
     <div class="box">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Action</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="athlete in athletes track by $index">
-                    <td>{[ athlete.id ]}</td>
-                    <td>{[ athlete.athlete_name ]}</td>
-                    <td class="btn" ng-click="editModal(athlete)"><img src="static/img/edit.png" width="22"/></td>
-                    <td class="btn" ng-click="deleteSite(athlete.id)"><img src="static/img/delete.png" width="22"/></td>
-                </tr>
-            </tbody>
-        </table>
+
+        {% include 'modals/__headers.html' %}
+
+        <div ng-repeat="athlete in athletes track by $index">
+            <ul>
+                <li class="arrow" ng-click="viewMore('treeIds', athlete.id)" ng-show="athlete.athlete_infos.length > 0"><span>&#10148;</span></li>
+                <li class="id">{[ athlete.id ]}</li>
+                <li class="athlete_name">{[ athlete.athlete_name ]}</li>
+                <li><button ng-click="editAthleteModal(athlete)" class="edit">Edit Athlete</button></li>
+                <li><button ng-click="deleteAthlete(athlete.id)">Delete Athlete</button></li>
+            </ul>
+            <div ng-show="treeIds.includes(athlete.id)" ng-repeat="infos in athlete.athlete_infos">
+                <ul class="child">
+                    <li class="arrow" ng-click="viewMore('secondTreeIds', infos.id)" ng-show="infos.event.length > 0"><span>&#10148;</span></li>
+                    <li class="sex">{[ infos.sex == 'F' ? 'Female' : 'Male' ]}</li>
+                    <li class="age">{[ infos.age ]}</li>
+                    <li class="height">{[ infos.height ]}</li>
+                    <li class="weight">{[ infos.weight ]}</li>
+                    <li class="team">{[ infos.team ]}</li>
+                    <li class="medal">{[ infos.medal == null ? 'No medals' : infos.medal ]}</li>
+                    <li><button ng-click="editInfosModal(infos)" class="edit">Edit Athlete Informations</button></li>
+                    <li><button ng-click="deleteModal(infos.id)">Delete Athlete Informations</button></li>
+                </ul>
+                <div ng-show="secondTreeIds.includes(infos.id)" ng-repeat="event in infos.event">
+                    <ul class="sub-child">
+                        <li class="arrow" ng-click="viewMore('thirdTreeIds', event.id)" ng-show="infos.events.length > 0"><span>&#10148;</span></li>
+                        <li class="id">{[ event.id ]}</li>
+                        <li class="event_name">{[ event.event_name ]}</li>
+                        <li class="city">{[ event.city ]}</li>
+                        <li class="sport">{[ event.sport ]}</li>
+                        <li class="season">{[ event.season ]}</li>
+                        <li class="year">{[ event.year ]}</li>
+                        <li class="games">{[ event.games ]}</li>
+                        <li><button ng-click="editEvent(event)" class="edit">Edit Event</button></li>
+                        <li><button ng-click="deleteModal(event.id)">Delete Event</button></li>
+                    </ul>
+                <div>
+            <div>
+        </div>
     </div>
+
 </section>

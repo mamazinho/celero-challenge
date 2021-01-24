@@ -18,7 +18,7 @@ class Event(models.Model):
     )
     sport = models.CharField(
         db_column='eveSport',
-        max_length=45,
+        max_length=64,
         default='',
     )
     season = models.CharField(
@@ -26,9 +26,13 @@ class Event(models.Model):
         max_length=10,
         default='',
     )
-    year = models.CharField(
+    year = models.PositiveSmallIntegerField(
         db_column='eveYear',
-        max_length=45,
+        default=0,
+    )
+    games = models.CharField(
+        db_column='eveGames',
+        max_length=70,
         default='',
     )
 
