@@ -8,6 +8,11 @@ import datetime, json, requests, csv, random
  
 class Command(BaseCommand):
 
+    def fill_foreignkey_ids(self, objects, fields):
+        for f in fields:
+            for o in objects:
+                setattr(o, f'{f}_id', getattr(o, f).id)
+
     def handle(self, *args, **options):
 
         # Get local csv
@@ -21,7 +26,7 @@ class Command(BaseCommand):
         # Reading each csv line
         print("Reading CSV file...\n")
         for index, line in enumerate(reader):
-            print(index)
+            
             # for features in ['Age', 'Height', 'Weight', 'Medal']:
             #     line[features] = None if line[features] == 'NA' else line[features]
             line['Age'] = None if line['Age'] == 'NA' else line['Age']
@@ -52,17 +57,16 @@ class Command(BaseCommand):
                 medal=line['Medal'],
             )
 
-            if ath not in to_create_ath:
-                to_create_ath.append(ath)
-            if eve not in to_create_eve:
-                to_create_eve.append(eve)
-            if ati not in to_create_ati:
-                to_create_ati.append(ati)
+            to_create_ath.append(ath)
+            to_create_eve.append(eve)
+            to_create_ati.append(ati)
 
-            # athlete_info.event.add(event)
+            if index == 10:
+                break
 
-        Athlete.objects.bulk_create(to_create_ath, batch_size=10000)
-        Event.objects.bulk_create(to_create_eve, batch_size=10000)
+        Athlete.objects.bulk_create(to_create_ath, batch_size=10000, ignore_conflicts=True)
+        self.fill_foreignkey_ids(to_create_ati, ['athlete'])
+        Event.objects.bulk_create(to_create_eve, batch_size=10000, ignore_conflicts=True)
         AthleteInfo.objects.bulk_create(to_create_ati, batch_size=10000)
 
         ath_ids = list(AthleteInfo.objects.values_list('id', flat=True))
