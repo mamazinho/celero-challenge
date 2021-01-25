@@ -15,6 +15,9 @@ where it will start to make requests to the API, which is running with django re
 * I opt for use a front-end framework (AngularJs) because it will help so much in interactivity and how the data will be
 displayed to user, how the main objective of Django Rest Framework is to be an API (webServices), I treat it like this, leaving the renders
 with the front-end and delivering a complete flow.
+***Why AngularJs?***
+* I prefer VueJs to front-end, but angularJs allows a simplicity, because it runs inside Django and not out, as vueJs. The angularJs can be used
+as mini-framework better than vue.
 ***Why the manyToMany relation stay in Athlete_infos and not in Athlete***
 * If the relation was been made using the athlete I will open the user and have all events that he goes more easily,
 but I would not have the same easily to take his infos for each event. So, it's better that info has many events and

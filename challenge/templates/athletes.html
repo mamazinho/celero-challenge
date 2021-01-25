@@ -65,9 +65,9 @@
                     <ul class="child">
                         <li class="arrow" ng-click="viewMore('secondTreeIds', infos.id)" ng-show="infos.event.length > 0"><span>&#10148;</span></li>
                         <li class="sex">{[ infos.sex == 'F' ? 'Female' : 'Male' ]}</li>
-                        <li class="age">{[ infos.age ]}</li>
-                        <li class="height">{[ infos.height ]}</li>
-                        <li class="weight">{[ infos.weight ]}</li>
+                        <li class="age">{[ infos.age == null ? 'No informed' : infos.age ]}</li>
+                        <li class="height">{[ infos.height == null ? 'No informed' : infos.height ]}</li>
+                        <li class="weight">{[ infos.weight == null ? 'No informed' : infos.weight ]}</li>
                         <li class="team">{[ infos.team ]}</li>
                         <li class="medal">{[ infos.medal == null ? 'No medals' : infos.medal ]}</li>
                         <li><button ng-click="editInfosModal(infos)" class="edit">Edit Athlete Informations</button></li>
