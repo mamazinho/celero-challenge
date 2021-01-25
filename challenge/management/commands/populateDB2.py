@@ -30,11 +30,11 @@ class Command(BaseCommand):
             line['Medal'] = None if line['Medal'] == 'NA' else line['Medal']
 
             ath = Athlete(
-                athlete_name=line['Name'],
+                athlete_name=line['Name'].lstrip(),
             )
 
             eve = Event(
-                event_name=line['Event'],
+                event_name=line['Event'].lstrip(),
                 city=line['City'],
                 sport=line['Sport'],
                 season=line['Season'],

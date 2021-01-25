@@ -23,11 +23,11 @@ class Command(BaseCommand):
                 line[features] = None if line[features] == 'NA' else line[features]
 
             athlete, created = Athlete.objects.get_or_create(
-                athlete_name=line['Name'],
+                athlete_name=line['Name'].lstrip(),
             )
 
             event, created = Event.objects.get_or_create(
-                event_name=line['Event'],
+                event_name=line['Event'].lstrip(),
                 city=line['City'],
                 sport=line['Sport'],
                 season=line['Season'],
