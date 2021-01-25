@@ -13,7 +13,7 @@ class AthleteViewSet(viewsets.ModelViewSet):
             queryset = Athlete.objects.filter(athlete_name__contains=athlete_name)
         else:
             queryset = Athlete.objects.all()
-        return queryset
+        return queryset.order_by('athlete_name')
 
 class AthleteInfoViewSet(viewsets.ModelViewSet):
     queryset = AthleteInfo.objects.all()

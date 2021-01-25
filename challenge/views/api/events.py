@@ -15,4 +15,4 @@ class EventViewSet(viewsets.ModelViewSet):
             queryset = Event.objects.filter(event_name__contains=event_name)
         else:
             queryset = Event.objects.all()
-        return queryset
+        return queryset.order_by('event_name')
