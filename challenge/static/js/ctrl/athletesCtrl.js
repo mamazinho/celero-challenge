@@ -38,21 +38,30 @@ challenge.controller('AthletesCtrl', function($scope, HttpFctr, $rootScope){
       'medal': '',
       'event': ''
     }
+    $scope.offset_next = null,
+    $scope.offset_prev = null,
+    $scope.actual_offset = null
+    $scope.params = {
+      'limit': 10,
+      'limitoffset': 20,
+      'offset': null,
+      'athlete_name': null
+    }
     $scope.getAthletes()
-    $scope.getEvents()
   }
 
   // Get the Athletes from API
-  $scope.getAthletes = function() {
-    HttpFctr('athletes', 'GET').then(function(response){
-    $scope.athletes = response
-    })
-  }
-
-  // Get the Events from API to select in modal of infos
-  $scope.getEvents = function() {
-    HttpFctr('events', 'GET').then(function(response){
-      $scope.events = response
+  $scope.getAthletes = function(goTo) {
+    if (goTo)
+      $scope.params.offset = goTo == 'next' ? $scope.offset_next : $scope.offset_prev
+    else
+      $scope.params.offset = $scope.actual_offset
+    $scope.actual_offset =  $scope.params.offset
+    HttpFctr('athletes', 'GET', {params: $scope.params}).then(function(response){
+      $scope.athletes = response.results
+      $scope.params.athlete_name = null
+      $scope.offset_next = response.next ? new URL(response.next).searchParams.get('offset') : null
+      $scope.offset_prev = response.previous ? new URL(response.previous).searchParams.get('offset') : null
     })
   }
 

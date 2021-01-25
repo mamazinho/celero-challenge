@@ -9,7 +9,6 @@ class Event(models.Model):
     event_name = models.CharField(
         db_column='eveName', 
         max_length=132,
-        unique = True
     )
     city = models.CharField(
         db_column='eveCity',
@@ -42,6 +41,7 @@ class Event(models.Model):
     class Meta:
         managed = True
         db_table = 'Event'
+        unique_together = ['event_name', 'city', 'sport', 'season', 'year', 'games']
 
         
 admin.site.register(Event)

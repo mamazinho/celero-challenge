@@ -4,13 +4,10 @@ challenge.controller('EventCtrl', function($scope, HttpFctr, $rootScope){
     $scope.athletes = []
     $scope.treeIds = []
     $scope.secondTreeIds = []
-    $scope.thirdTreeIds = []
     $scope.filter_name = ''
     $scope.renderHeader = 'eventInEvent'
     $scope.openCreateEventModal = false
     $scope.openEditEventModal = false
-    $scope.openCreateInfosModal = false
-    $scope.openEditInfosModal = false
     $scope.createEvent = {
       'event_name': '',
       'city': '',
@@ -28,16 +25,33 @@ challenge.controller('EventCtrl', function($scope, HttpFctr, $rootScope){
       'season': '',
       'games': '',
     }
+    $scope.offset_next = null,
+    $scope.offset_prev = null,
+    $scope.actual_offset = null
+    $scope.params = {
+      'limit': 10,
+      'limitoffset': 20,
+      'offset': null,
+      'event_name': null
+    }
     $scope.getEvents()
   }
 
   // Get the Events from API
-  $scope.getEvents = function() {
-    HttpFctr('events', 'GET').then(function(response){
-      $scope.events = response
+  $scope.getEvents = function(goTo) {
+    if (goTo)
+      $scope.params.offset = goTo == 'next' ? $scope.offset_next : $scope.offset_prev
+    else
+      $scope.params.offset = $scope.actual_offset
+    $scope.actual_offset =  $scope.params.offset
+    HttpFctr('events', 'GET', {params: $scope.params}).then(function(response){
+      $scope.events = response.results
+      $scope.params.event_name = null
+      $scope.offset_next = response.next ? new URL(response.next).searchParams.get('offset') : null
+      $scope.offset_prev = response.previous ? new URL(response.previous).searchParams.get('offset') : null
     })
   }
-  // Create new Athletes on API
+  // Create new Event on API
   $scope.createNewEvent = function() {
     $scope.createEvent.games = `${$scope.createEvent.year} ${$scope.createEvent.season}`
     var data = JSON.stringify($scope.createEvent)

@@ -19,6 +19,10 @@ with the front-end and delivering a complete flow.
 * If the relation was been made using the athlete I will open the user and have all events that he goes more easily,
 but I would not have the same easily to take his infos for each event. So, it's better that info has many events and
 many events with that infos instead athlete. But I open for suggestions about data modeling or another issue.
+***Time to run command to populate database***
+* I test two ways, the most used to perform a batch is the bulk_create, to make in one query, I have tried to follow this way (you can find the code in 'populateDB2.py' file), but the perform gain was very low, because it's slow to read and populate the lists. The other way was make the basic, get_or_create in database (you can 
+find the code in 'populateDB.py'). Both versions can take more than half-hour to run all queries. For this, I left a sql file, if you have no time to waste
+the better way is make a `mysql celero < challenge/utils/celero-bkp.sql`. I am accepting suggestions of everyone, this was the hardest part for me, make this perform.
 
 
 You can find how make your setup and run the project in your Linux machine in the text below:

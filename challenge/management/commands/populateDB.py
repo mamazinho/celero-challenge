@@ -16,8 +16,9 @@ class Command(BaseCommand):
 
         # Reading each csv line
         print("Reading CSV file...\n")
-        for line in reader:
-
+        for i, line in enumerate(reader):
+            
+            print(i)
             for features in ['Age', 'Height', 'Weight', 'Medal']:
                 line[features] = None if line[features] == 'NA' else line[features]
 
@@ -44,8 +45,5 @@ class Command(BaseCommand):
                 medal=line['Medal'],
             )
             athlete_info.event.add(event)
-
-            print(f'EVENT: {event}\nATHLETE: {athlete}\nINFOS: {athlete_info}')
-            break
 
         print("Process completed successfully")

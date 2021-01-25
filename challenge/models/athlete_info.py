@@ -61,7 +61,7 @@ class AthleteInfo(models.Model):
     class Meta:
         managed = True
         db_table = 'AthleteInfo'
-        unique_together = (('athlete', 'team'),)
+        unique_together = ['athlete', 'sex', 'team', 'age', 'height', 'weight', 'medal']
 
         
 admin.site.register(AthleteInfo)

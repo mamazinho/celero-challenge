@@ -8,7 +8,8 @@ class Athlete(models.Model):
     )
     athlete_name = models.CharField(
         db_column='athName', 
-        max_length=45,
+        max_length=255,
+        default='',
         unique = True
     )
 
@@ -18,6 +19,10 @@ class Athlete(models.Model):
     class Meta:
         managed = True
         db_table = 'Athlete'
+
+    @property
+    def athlete_name_sliced(self):
+        return self.athlete_name[:24]
 
         
 admin.site.register(Athlete)

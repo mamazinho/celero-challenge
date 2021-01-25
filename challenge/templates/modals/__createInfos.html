@@ -1,8 +1,8 @@
 <h4>Create Athlete Infos Modal</h4>
 <form id="createInfos">
     <label>
-        <span>ID of the athlete: </span>
-        <input name="athlete" ng-model="createInfosAthlete.athlete" type="number" placeholder="ID (You can find this in first column)">
+        <span>Athlete ID: </span>
+        <input name="athlete" ng-model="createInfosAthlete.athlete" type="number" placeholder="Athlete ID (You can find this in first column)">
     </label>
     <label>
         <span>Age: </span>
@@ -39,10 +39,8 @@
         </label>
     </label>
     <label>
-        <span>Event: </span>
-        <select ng-model="createInfosAthlete.event" ng-options="event.id as event.event_name for event in events track by event.id">
-            <option value="Dê um evento para esse atleta">Dê um evento para esse atleta</option>
-        </select>
+        <span>Event ID: </span>
+        <input name="event" ng-model="createInfosAthlete.event" type="number" placeholder="Event ID (You can find this in first column of events)">
     </label>
 
     <div class="buttons">

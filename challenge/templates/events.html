@@ -1,62 +1,73 @@
-<section class="content" ng-controller="EventCtrl">
-    <h4>This tab shows the events, it just serve to not pollute the athletes tab and give a vision about the athletes that participated of determined event.</h4>
-    <p>Here you can manipulate all informations about a event. You can create, edit and delete a event. </p>
-    <p>You can't manipulate the athletes, for this operations, go to Athletes tab, clicking in the button above.</p>
-    <p>To add athletes to an event, you need go to Athlete tab and add an information, then you can add the event to an athlete.</p>
-    <p>The headers change automatically according the level in tree structure.</p>
+<section ng-controller="EventCtrl">
+    <section class="content">
+        <h4>This tab shows the events, it just serve to not pollute the athletes tab and give a vision about the athletes that participated of determined event.</h4>
+        <p>Here you can manipulate all informations about a event. You can create, edit and delete a event. </p>
+        <p>You can't manipulate the athletes, for this operations, go to Athletes tab, clicking in the button above.</p>
+        <p>To add athletes to an event, you need go to Athlete tab and add an information, then you can add the event to an athlete.</p>
+        <p>The headers change automatically according the level in tree structure.</p>
+
+        <div class="buttons">
+            <button class="main" ng-click="openCreateEventModal=true">Create new event</button>
+        </div>
+        <div class="filter">
+            <label>
+                <input type="text" 
+                    placeholder="Filter by event name (Press Enter to search, if empty returns all list again)" 
+                    ng-model="params.event_name" 
+                    ng-keyup="$event.keyCode == 13 && getEvents()"
+                >
+            </label>
+        </div>
+
+        <div class="modal" ng-show="openCreateEventModal">
+            <div class="overlay" ng-click="openCreateEventModal=false"></div>
+            <div class="content">
+                {% include 'modals/__createEvent.html' %}
+            </div>
+        </div>
+
+        <div class="modal" ng-show="openEditEventModal">
+            <div class="overlay" ng-click="openEditEventModal=false"></div>
+            <div class="content">
+                {% include 'modals/__editEvent.html' %}
+            </div>
+        </div>
+
+        <div class="box">
+
+            {% include 'modals/__headers.html' %}
+
+            <div ng-repeat="event in events | filter: filter_name track by $index">
+                <ul>
+                    <li class="arrow" ng-click="viewMore('treeIds', event.id)" ng-show="event.athlete_infos.length > 0"><span>&#10148;</span></li>
+                    <li class="id">{[ event.id ]}</li>
+                    <li class="event_name">{[ event.event_name ]}</li>
+                    <li class="city">{[ event.city ]}</li>
+                    <li class="sport">{[ event.sport ]}</li>
+                    <li class="season">{[ event.season ]}</li>
+                    <li class="year">{[ event.year ]}</li>
+                    <li class="games">{[ event.games ]}</li>
+                    <li><button ng-click="editEventModal(event)" class="edit">Edit Event</button></li>
+                    <li><button ng-click="deleteEvent(event.id)">Delete Event</button></li>
+                </ul>
+                <div ng-show="treeIds.includes(event.id)" ng-repeat="infos in event.athlete_infos">
+                    <ul class="child">
+                        <li class="arrow" ng-click="viewMore('secondTreeIds', infos.id)" ng-show="infos.event.length > 0"><span>&#10148;</span></li>
+                        <li class="athlete_name">{[ infos.athlete.athlete_name ]}</li>
+                        <li class="sex">{[ infos.sex == 'F' ? 'Female' : 'Male' ]}</li>
+                        <li class="age">{[ infos.age == null ? 'No informed' : infos.age ]}</li>
+                        <li class="height">{[ infos.height == null ? 'No informed' : infos.height ]}</li>
+                        <li class="weight">{[ infos.weight == null ? 'No informed' : infos.weight ]}</li>
+                        <li class="team">{[ infos.team ]}</li>
+                        <li class="medal">{[ infos.medal == null ? 'No medals' : infos.medal ]}</li>
+                    </ul>
+                <div>
+            </div>
+        </div>
+    </section>
 
     <div class="buttons">
-        <button class="main" ng-click="openCreateEventModal=true">Create new event</button>
+        <button ng-click="getEvents('prev')">Previous Page</button>
+        <button class="main" ng-click="getEvents('next')">Next Page</button>
     </div>
-    <div class="filter">
-        <label>
-            <input type="text" placeholder="Filter by event features" ng-model="filter_name">
-        </label>
-    </div>
-
-    <div class="modal" ng-show="openCreateEventModal">
-        <div class="overlay" ng-click="openCreateEventModal=false"></div>
-        <div class="content">
-            {% include 'modals/__createEvent.html' %}
-        </div>
-    </div>
-
-    <div class="modal" ng-show="openEditEventModal">
-        <div class="overlay" ng-click="openEditEventModal=false"></div>
-        <div class="content">
-            {% include 'modals/__editEvent.html' %}
-        </div>
-    </div>
-
-    <div class="box">
-
-        {% include 'modals/__headers.html' %}
-
-        <div ng-repeat="event in events | filter: filter_name track by $index">
-            <ul>
-                <li class="arrow" ng-click="viewMore('treeIds', event.id)" ng-show="event.athlete_infos.length > 0"><span>&#10148;</span></li>
-                <li class="event_name">{[ event.event_name ]}</li>
-                <li class="city">{[ event.city ]}</li>
-                <li class="sport">{[ event.sport ]}</li>
-                <li class="season">{[ event.season ]}</li>
-                <li class="year">{[ event.year ]}</li>
-                <li class="games">{[ event.games ]}</li>
-                <li><button ng-click="editEventModal(event)" class="edit">Edit Event</button></li>
-                <li><button ng-click="deleteEvent(event.id)">Delete Event</button></li>
-            </ul>
-            <div ng-show="treeIds.includes(event.id)" ng-repeat="infos in event.athlete_infos">
-                <ul class="child">
-                    <li class="arrow" ng-click="viewMore('secondTreeIds', infos.id)" ng-show="infos.event.length > 0"><span>&#10148;</span></li>
-                    <li class="athlete_name">{[ infos.athlete.athlete_name ]}</li>
-                    <li class="sex">{[ infos.sex == 'F' ? 'Female' : 'Male' ]}</li>
-                    <li class="age">{[ infos.age ]}</li>
-                    <li class="height">{[ infos.height ]}</li>
-                    <li class="weight">{[ infos.weight ]}</li>
-                    <li class="team">{[ infos.team ]}</li>
-                    <li class="medal">{[ infos.medal == null ? 'No medals' : infos.medal ]}</li>
-                </ul>
-            <div>
-        </div>
-    </div>
-
-</section>
+</setion>

@@ -5,7 +5,15 @@ from rest_framework.decorators import action
 
 class AthleteViewSet(viewsets.ModelViewSet):
     serializer_class = AthleteSerializer
-    queryset = Athlete.objects.all()
+
+    def get_queryset(self):
+        params = self.request.query_params
+        if params and 'athlete_name' in params:
+            athlete_name = params.get('athlete_name').title()
+            queryset = Athlete.objects.filter(athlete_name__contains=athlete_name)
+        else:
+            queryset = Athlete.objects.all()
+        return queryset
 
 class AthleteInfoViewSet(viewsets.ModelViewSet):
     queryset = AthleteInfo.objects.all()

@@ -39,10 +39,8 @@
         </label>
     </label>
     <label>
-        <span>Event: </span>
-        <select ng-model="editInfosAthlete.event" ng-options="event.id as event.event_name for event in events">
-            <option value="Dê um evento para esse atleta">Dê um evento para esse atleta</option>
-        </select>
+        <span>Event ID: </span>
+        <input name="event" ng-model="editInfosAthlete.event" type="number" placeholder="Event ID (You can find this in first column of events)">
     </label>
 
     <div class="buttons">

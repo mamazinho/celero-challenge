@@ -7,4 +7,12 @@ from challenge.serializers import EventSerializer
 
 class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializer
-    queryset = Event.objects.all()
+
+    def get_queryset(self):
+        params = self.request.query_params
+        if params and 'event_name' in params:
+            event_name = params.get('event_name').title()
+            queryset = Event.objects.filter(event_name__contains=event_name)
+        else:
+            queryset = Event.objects.all()
+        return queryset
