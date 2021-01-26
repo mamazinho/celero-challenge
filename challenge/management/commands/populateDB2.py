@@ -8,11 +8,6 @@ import datetime, json, requests, csv, random
  
 class Command(BaseCommand):
 
-    def fill_foreignkey_ids(self, objects, fields):
-        for f in fields:
-            for o in objects:
-                setattr(o, f'{f}_id', getattr(o, f).id)
-
     def handle(self, *args, **options):
 
         # Get local csv
@@ -27,6 +22,7 @@ class Command(BaseCommand):
         print("Reading CSV file...\n")
         for index, line in enumerate(reader):
             
+            print(index)
             # for features in ['Age', 'Height', 'Weight', 'Medal']:
             #     line[features] = None if line[features] == 'NA' else line[features]
             line['Age'] = None if line['Age'] == 'NA' else line['Age']
@@ -35,6 +31,7 @@ class Command(BaseCommand):
             line['Medal'] = None if line['Medal'] == 'NA' else line['Medal']
 
             ath = Athlete(
+                id=line['ID'],
                 athlete_name=line['Name'].lstrip(),
             )
 
@@ -65,7 +62,6 @@ class Command(BaseCommand):
                 break
 
         Athlete.objects.bulk_create(to_create_ath, batch_size=10000, ignore_conflicts=True)
-        self.fill_foreignkey_ids(to_create_ati, ['athlete'])
         Event.objects.bulk_create(to_create_eve, batch_size=10000, ignore_conflicts=True)
         AthleteInfo.objects.bulk_create(to_create_ati, batch_size=10000)
 
