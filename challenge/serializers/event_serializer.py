@@ -19,7 +19,7 @@ class EventSerializer(serializers.ModelSerializer):
         model = Event
         fields = '__all__'
 
-class EventSerializerOnly(serializers.ModelSerializer):
+class EventOnlySerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'

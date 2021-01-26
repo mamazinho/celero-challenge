@@ -23,7 +23,7 @@ as mini-framework better than vue.
 but I would not have the same easily to take his infos for each event. So, it's better that info has many events and
 many events with that infos instead athlete. But I open for suggestions about data modeling or another issue.
 ***Time to run command to populate database***
-* I test two ways, the most used to perform a batch is the bulk_create, to make in one query for db, I have tried to follow this way (you can find the code in 'populateDB2.py' file), but the perform gain was very low, because it's slow to read and populate the lists, and it's just a test, I left this file only to example of idea, but not finished. The other way, this works, was make the basic, get_or_create in database (you can find the code in 'populateDB.py'). Both versions can take more than half-hour to run all queries. For this, I left a sql file, if you have no time to waste the better way is make a `mysql celero < challenge/utils/celero-bkp.sql`. I am accepting suggestions of everyone, this was the hardest part for me, make this perform.
+* I test two ways, the most used to perform a batch is the bulk_create, to make in one query for db, I have tried to follow this way (you can find the code in 'populateDB2.py' file), but the perform gain was very low, because it's slow to read and populate the lists, and it's just a test, I left this file only to example of idea, but not finished. The other way, this works, was make the basic, get_or_create in database (you can find the code in 'populateDB.py'). Both versions can take more than half-hour to run all queries. For this, I left a sql file, if you have no time to waste the better way is make a `mysql celero < challenge/utils/celero.sql` after migrate. I am accepting suggestions of everyone, this was the hardest part for me, make this perform.
 
 
 You can find how make your setup and run the project in your Linux machine in the text below:
@@ -40,6 +40,7 @@ You can find how make your setup and run the project in your Linux machine in th
     $ sudo mysql -e "CREATE DATABASE celero"
     $ sudo mysql -e "CREATE USER celero IDENTIFIED BY 'c3l3r0'"
     $ sudo mysql -e "GRANT ALL ON celero.* TO 'celero'@'%' IDENTIFIED BY 'c3l3r0'"
+    $ sudo mysql -e "GRANT ALL ON test_celero.* TO 'celero'@'%' IDENTIFIED BY 'c3l3r0'"
 
 ## How to Setup:
     $ workon celc

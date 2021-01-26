@@ -1,9 +1,9 @@
 from challenge.models import Athlete, AthleteInfo, Event
 from rest_framework import serializers
-from .event_serializer import EventSerializerOnly
+from .event_serializer import EventOnlySerializer
 
 class AthleteInfoSerializer(serializers.ModelSerializer):
-    event = EventSerializerOnly(read_only=True, many=True)
+    event = EventOnlySerializer(read_only=True, many=True)
 
     class Meta:
         model = AthleteInfo
