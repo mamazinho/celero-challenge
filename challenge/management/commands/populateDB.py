@@ -47,3 +47,4 @@ class Command(BaseCommand):
             athlete_info.event.add(event)
 
         print("Process completed successfully")
+        return
