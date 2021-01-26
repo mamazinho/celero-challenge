@@ -1,6 +1,6 @@
 from django.test import TestCase
 from challenge.models import Athlete, AthleteInfo, Event
-from challenge.serializers import AthleteInfoSerializer, AthleteSerializer, AthleteNewInfoSerializer, EventSerializer, EventOnlySerializer
+from challenge.serializers import AthleteInfoSerializer, AthleteSerializer, EventSerializer, EventOnlySerializer, AthleteNewInfoSerializer
 
 class ModelsTest(TestCase):
 
@@ -22,7 +22,7 @@ class ModelsTest(TestCase):
             city = 'Curitiba',
             sport = 'parkour',
             season = 'Summer',
-            year = '2020',
+            year = 2020,
             games = '2020 Summer'
         )
 
@@ -30,35 +30,20 @@ class ModelsTest(TestCase):
 
     def test_event_serializer(self):
         serializer = EventSerializer(instance=self.event)
-        # sample_event = {
-        #     'event_name': 'olympics',
-        #     'city': 'Curitiba',
-        #     'sport': 'parkour',
-        #     'season': 'Summer',
-        #     'year': '2020',
-        #     'games': '2020 Summer'
-        # }
         self.assertEqual(serializer.data['city'], 'Curitiba')
+
+    def test_event_only_serializer(self):
+        serializer = EventOnlySerializer(instance=self.event)
+        self.assertEqual(serializer.data['event_name'], 'olympics')
         
     def test_athlete_info_serializer(self):
         serializer = AthleteInfoSerializer(instance=self.athlete_info)
-        # sample_infos = {
-        #     'athlete': 1,
-        #     'sex': 'M',
-        #     'age': 20,
-        #     'height': 1.76,
-        #     'weight': 60,
-        #     'team': 'Brasil',
-        #     'medal': 'Gold',
-        #     'event': []
-        # }
         self.assertEqual(serializer.data['age'], 20)
+
+    def test_athlete_new_info_serializer(self):
+        serializer = AthleteNewInfoSerializer(instance=self.athlete_info)
+        self.assertEqual(serializer.data['weight'], 60)
 
     def test_athlete_serializer(self):
         serializer = AthleteSerializer(instance=self.athlete)
-        # sample_athlete = {
-        #     'id': 1,
-        #     'athlete_name': 'Matheus',
-        #     'athlete_infos': []
-        # }
         self.assertEqual(serializer.data['athlete_name'], 'Matheus')
