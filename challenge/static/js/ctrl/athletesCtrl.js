@@ -118,10 +118,14 @@ challenge.controller('AthletesCtrl', function($scope, HttpFctr, $rootScope){
 
   // Update Infos Athlete
   $scope.updateInfos = function() {
+    var method = 'PATCH'
     $scope.editInfosAthlete.medal == '' ? $scope.editInfosAthlete.medal = null : $scope.editInfosAthlete.medal
-    $scope.editInfosAthlete.event = [$scope.editInfosAthlete.event]
+    $scope.editInfosAthlete.event = $scope.editInfosAthlete.event ? [$scope.editInfosAthlete.event] : null
+    console.log($scope.editInfosAthlete.event)
+    if ($scope.editInfosAthlete.event)
+      method = 'PUT'
     var data = JSON.stringify($scope.editInfosAthlete)
-    HttpFctr(`athletes-infos/${$scope.editInfosAthlete.id}`, 'PUT', {data}).then(function(){
+    HttpFctr(`athletes-infos/${$scope.editInfosAthlete.id}`, method, {data}).then(function(){
       $scope.getAthletes()
       $scope.openEditInfosModal = false
       $scope.editInfosAthlete = {}
