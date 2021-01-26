@@ -47,9 +47,14 @@ You can find how make your setup and run the project in your Linux machine in th
     $ pip install -r requirements.txt
     $ python manage.py migrate
     $ python manage.py populateDB
+    or, the fast way to populate:
+    $ sudo mysql celero < challenge/utils/celero.sql
 
 ## How to Run:
     $ python manage.py runserver
+
+## How to Run Unit Tests:
+    $ python manage.py test
 
 ## How to access:
     Your terminal will show an address that looks like 'http://127.0.0.1:[port number]', just put this address in your browser and use it.
