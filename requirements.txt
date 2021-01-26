@@ -3,3 +3,5 @@ requests
 mysqlclient
 django-sass-processor
 djangorestframework
+gunicorn
+django-heroku
