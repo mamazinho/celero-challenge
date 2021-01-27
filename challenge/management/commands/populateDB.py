@@ -46,5 +46,8 @@ class Command(BaseCommand):
             )
             athlete_info.event.add(event)
 
+            if i == 9900:
+                break
+            
         print("Process completed successfully")
         return
