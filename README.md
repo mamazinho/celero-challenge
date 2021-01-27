@@ -13,7 +13,7 @@ where it will start to make requests to the API, which is running with django re
 
 ## Questions:
 ***Why use a front-end framework?***
-* I opt for use a front-end framework (AngularJs) because it will help so much in interactivity and how the data will be
+* I chose to use a front-end framework (AngularJs) because it will help so much in interactivity and how the data will be
 displayed to user, how the main objective of Django Rest Framework is to be an API (webServices), I treat it like this, leaving the renders
 with the front-end and delivering a complete flow.
 
