@@ -1,5 +1,6 @@
 This application makes part of Celero's Back-end challenge
 
+Read this Doc in [PT-BR](README.pt.md)
 
 ## Technologies
 * Django
@@ -20,22 +21,22 @@ with the front-end and delivering a complete flow.
 * I prefer VueJs to front-end, but angularJs allows a simplicity, because it runs inside Django and not out, as vueJs. The angularJs can be used
 as mini-framework better than vue.
 
-***Why the manyToMany relation stay in Athlete_infos and not in Athlete***
-* If the relation was been made using the athlete I will open the user and have all events that he goes more easily,
+***Why the manyToMany relation stay in Athlete_infos and not in Athlete?***
+* If the relation was been made using the athlete I will open the athlete and have all events that he goes more easily,
 but I would not have the same easily to take his infos for each event. So, it's better that info has many events and
 many events with that infos instead athlete. But I am open for suggestions about data modeling or another issue.
 
 ***Time to run command to populate database***
-* I test two ways, the most used to perform a batch is the bulk_create, to make in one query for db, I have tried to follow this way (you can find the code in 'populateDB2.py' file), but the perform gain was very low, because it's slow to read and populate the lists, and it's just a test, I left this file only to example of idea, but not finished. The other way, this works, was make the basic, get_or_create in database (you can find the code in 'populateDB.py'). Both versions can take more than half-hour to run all queries. 
-For this, I left a sql file, if you have no time to waste the better way is make a `mysql celero < challenge/utils/athlete_events.sql` after migrate. I am accepting suggestions of everyone, this was the hardest part for me, make this perform.
+* I test two ways, the most used to perform a batch is the bulk_create, to make in one query for db. I have tried to follow this way (you can find the code in 'populateDB2.py' file), but the perform gain was very low, because it's slow to read and populate the lists, and it's just a test, I left this file only to example of idea, but not finished. The other way, this works, was make the basic, get_or_create (you can find the code in 'populateDB.py'). Both versions can take more than half-hour to run all queries. For this reason I left a sql file, if you have no time to wait all process of populate db, the better way is run the command 
+`mysql celero < challenge/utils/athlete_events.sql` after migrate. I am accepting suggestions of everyone, make this have a nice performance was the hardest part for me.
 
 ***Why Heroku?***
-* Heroku was the best cost benefit, it offer in free plan 10.000 lines in database and has easily intergration with github.
+* Heroku was the best cost benefit that I found, it offer in free plan 10.000 lines in tables on database and has easily intergration with github.
 
 
 ## Servers:
 You can access the application in Heroku App clicking [here](https://challenge-celero.herokuapp.com/).
-Heroku has a limit in free plan about quantity of lines in database, for this reason, this version has fewer lines, I placed a limit for you create new Athletes, Events or Informations for Athletes.
+Heroku has a limit in free plan about quantity of lines in tables on database, for this reason, this version has fewer records of athletes and events. I placed a limit too, for you create new Athletes, Events or Informations for Athletes.
 
 ## Run in local machine
 You can find how make your setup and run the project in your Linux machine in the text below:
