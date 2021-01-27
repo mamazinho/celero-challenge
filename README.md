@@ -31,7 +31,7 @@ many events with that infos instead athlete. But I am open for suggestions about
 `mysql celero < challenge/utils/athlete_events.sql` after migrate. I am accepting suggestions of everyone, make this have a nice performance was the hardest part for me.
 
 ***Why Heroku?***
-* Heroku was the best cost benefit that I found, it offer in free plan 10.000 lines in tables on database and has easily intergration with github.
+* Heroku was the best cost benefit that I found, it offer in free plan 10.000 lines in tables on database and has easily intergration with github. It has a delay to make the CRUD operations, sometimes you need refresh the page, this is a problem between angularJs reactivity and Heroku to process this, in local it does not happen.
 
 
 ## Servers:

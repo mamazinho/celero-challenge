@@ -25,7 +25,7 @@ Leia essa documentação em [EN-US](README.md)
 * Eu testei dois caminhos, o mais usado para performar em batchs é o bulk_create, para fazer apenas uma query para o banco de dados. Eu tentei seguir esse caminho (disponível no arquivo 'populateDB2.py'), mas o ganho de performance ainda é baixo, porque ainda demora muito para ler e popular as listas, e foi apenas um teste, eu deixei o arquivo como uma ideia não finalizada. Outro caminho, que funcionou, foi usar o basico get_or_create (disponível no arquivo 'populateDB.py'). Ambas as versões podem levar mais de meia hora para rodar todas as queries necessárias. Por esse motivo eu deixei um arquivo sql, caso não queira esperar todo o processo para popular o banco de dados, é melhor rodar o comando `mysql celero < challenge/utils/athlete_events.sql` depois de fazer as migrations. Estou aceitando sugestões,  fazer a rotina performar bem foi a parte mais difícil para mim.
 
 ***Por que Heroku?***
-* Heroku foi o melhor custo-benefício encontrado, pois oferece um plano gratuito com 10.000 linhas disponíveis para uso nas tabelas do banco de dados e tem uma integração muito fácil com o github.
+* Heroku foi o melhor custo-benefício encontrado, pois oferece um plano gratuito com 10.000 linhas disponíveis para uso nas tabelas do banco de dados e tem uma integração muito fácil com o github. Ele tem um delay para fazer as operações de CRUD, as vezes a página precisa ser recarregada para aplicar o que foi feito, isso é um problema entre a reatividade do angularJs e o heroku, localmente isso não ocorre.
 
 
 ## Servers:
