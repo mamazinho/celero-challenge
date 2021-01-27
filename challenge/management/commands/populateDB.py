@@ -14,11 +14,11 @@ class Command(BaseCommand):
         csv_file = open('challenge/utils/athlete_events.csv')
         reader = csv.DictReader(csv_file, delimiter=',')
 
-        # Reading each csv line
         print("Reading CSV file...\n")
         for i, line in enumerate(reader):
             
-            print(i)
+            print(f'{i}/271116', end='\r', flush=True)
+            
             for features in ['Age', 'Height', 'Weight', 'Medal']:
                 line[features] = None if line[features] == 'NA' else line[features]
 

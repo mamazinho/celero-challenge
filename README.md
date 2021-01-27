@@ -24,8 +24,16 @@ but I would not have the same easily to take his infos for each event. So, it's 
 many events with that infos instead athlete. But I open for suggestions about data modeling or another issue.
 ***Time to run command to populate database***
 * I test two ways, the most used to perform a batch is the bulk_create, to make in one query for db, I have tried to follow this way (you can find the code in 'populateDB2.py' file), but the perform gain was very low, because it's slow to read and populate the lists, and it's just a test, I left this file only to example of idea, but not finished. The other way, this works, was make the basic, get_or_create in database (you can find the code in 'populateDB.py'). Both versions can take more than half-hour to run all queries. For this, I left a sql file, if you have no time to waste the better way is make a `mysql celero < challenge/utils/celero.sql` after migrate. I am accepting suggestions of everyone, this was the hardest part for me, make this perform.
+***Why Heroku?***
+* Heroku was the best cost benefit, it offer in free plan 10.000 lines in database and has easily intergration with github.
 
 
+## Servers:
+    You can access the application through the link below:
+    https://challenge-celero.herokuapp.com/
+    (The heroku has a limit in free plan about quantity of lines in database, for this reason, this version has fewer lines)
+
+## Run in local machine
 You can find how make your setup and run the project in your Linux machine in the text below:
 
 ## Install virtualenvwrapper and create a virtualenv:
