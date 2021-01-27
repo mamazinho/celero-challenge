@@ -2,6 +2,7 @@ from challenge.models import Athlete, AthleteInfo
 from challenge.serializers import AthleteSerializer, AthleteInfoSerializer, AthleteNewInfoSerializer
 from rest_framework import viewsets
 from rest_framework.decorators import action
+from django.db.models import Q
 
 class AthleteViewSet(viewsets.ModelViewSet):
     serializer_class = AthleteSerializer
@@ -10,10 +11,10 @@ class AthleteViewSet(viewsets.ModelViewSet):
         params = self.request.query_params
         if params and 'athlete_name' in params:
             athlete_name = params.get('athlete_name').title()
-            queryset = Athlete.objects.filter(athlete_name__contains=athlete_name)
+            queryset = Athlete.objects.filter(athlete_name__icontains=athlete_name)
         else:
             queryset = Athlete.objects.all()
-        return queryset.order_by('athlete_name')
+        return queryset
 
 class AthleteInfoViewSet(viewsets.ModelViewSet):
     queryset = AthleteInfo.objects.all()
