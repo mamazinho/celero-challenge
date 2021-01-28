@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'celerochallenge.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'celero',
+        'NAME': 'celero_performance_tests',
         'USER': 'celero',
         'PASSWORD': 'c3l3r0',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
